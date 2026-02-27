@@ -101,9 +101,3 @@ func handle_animation(direction):
 			animated_sprite_2d.play("idle")
 		else:
 			animated_sprite_2d.play("walk")
-
-
-func _on_animated_sprite_2d_frame_changed() -> void:
-	# pastikan hanya di animasi walk
-	if animated_sprite_2d.animation != "walk":
-		return
