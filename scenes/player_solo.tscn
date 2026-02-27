@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://d3li3sglptv5q"]
+
+[ext_resource type="Script" uid="uid://ysy6q7a3i88g" path="res://scripts/player_solo.gd" id="1_6p4to"]
+[ext_resource type="Texture2D" uid="uid://7vg2j1865jam" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_idle.png" id="1_i85tl"]
+[ext_resource type="Texture2D" uid="uid://btcds8l8o3byi" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_walk1.png" id="2_6p4to"]
+[ext_resource type="Texture2D" uid="uid://ckavd12djpprg" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_duck.png" id="2_c47o3"]
+[ext_resource type="Texture2D" uid="uid://bql03sfm1aj12" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_skid.png" id="3_2ysl2"]
+[ext_resource type="Texture2D" uid="uid://4wq6uun8gmay" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_walk2.png" id="3_gs1qq"]
+[ext_resource type="Texture2D" uid="uid://cdks0xam43mnt" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_slide.png" id="4_yvr8r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15jkh"]
+size = Vector2(63, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58ji0"]
+atlas = ExtResource("2_c47o3")
+region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5aam"]
+atlas = ExtResource("3_2ysl2")
+region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro0ju"]
+atlas = ExtResource("4_yvr8r")
+region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ropg0"]
+atlas = ExtResource("1_i85tl")
+region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uik2l"]
+atlas = ExtResource("2_6p4to")
+region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gimy"]
+atlas = ExtResource("3_gs1qq")
+region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_567bg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58ji0")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5aam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro0ju")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ropg0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uik2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gimy")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Player Solo" type="CharacterBody2D" unique_id=840166661]
+script = ExtResource("1_6p4to")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1119241264]
+position = Vector2(0.5, 11)
+shape = SubResource("RectangleShape2D_15jkh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1411124798]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_567bg")
+animation = &"idle"
+autoplay = "idle"
