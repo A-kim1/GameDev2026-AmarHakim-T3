@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cebyl3464rto3"
+path="res://.godot/imported/06 - Victory!.ogg-633dc9ee04abe0c602748edd8249550d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Tutorial5/Music/06 - Victory!.ogg"
+dest_files=["res://.godot/imported/06 - Victory!.ogg-633dc9ee04abe0c602748edd8249550d.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

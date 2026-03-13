@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ckl27lbrjjtk6"]
+
+[ext_resource type="Script" uid="uid://beqvou5oe6ner" path="res://scripts/button.gd" id="1_5royu"]
+[ext_resource type="AudioStream" uid="uid://cebyl3464rto3" path="res://assets/Tutorial5/Music/06 - Victory!.ogg" id="2_70gu0"]
+
+[node name="Fin" type="Node2D" unique_id=1492424461]
+
+[node name="Button" type="Button" parent="." unique_id=572558163]
+offset_left = 171.0
+offset_top = 167.0
+offset_right = 876.0
+offset_bottom = 395.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "FIN"
+script = ExtResource("1_5royu")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=115324289]
+stream = ExtResource("2_70gu0")
+volume_db = -18.0
+autoplay = true
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://cm3ae5jdthda1"]
+
+[ext_resource type="PackedScene" uid="uid://ds60n6krsavle" path="res://scenes/Ground.tscn" id="1_3bmlt"]
+[ext_resource type="Texture2D" uid="uid://bb27ooq5tnmp7" path="res://assets/meteorBrown_big1.png" id="2_jm1iu"]
+[ext_resource type="PackedScene" uid="uid://d3li3sglptv5q" path="res://scenes/player_solo.tscn" id="3_pbc48"]
+[ext_resource type="PackedScene" uid="uid://kqwtra5nwues" path="res://scenes/zombie.tscn" id="5_b4j7a"]
+[ext_resource type="Texture2D" uid="uid://cirwssqa1y3jv" path="res://assets/fasilkom.png" id="6_ne2mo"]
+[ext_resource type="Texture2D" uid="uid://b83s10q5xdw4w" path="res://assets/playerShip1_blue.png" id="6_wo48x"]
+[ext_resource type="AudioStream" uid="uid://bopmyq276o28y" path="res://assets/Tutorial5/Music/20 - The Journey.ogg" id="6_y0kc7"]
+[ext_resource type="Script" uid="uid://bo27tguctulu5" path="res://scenes/win.gd" id="7_ne2mo"]
+[ext_resource type="AudioStream" uid="uid://bav78b7wdsn0k" path="res://assets/Tutorial5/interact/Retro10.ogg" id="9_6cvei"]
+
+[sub_resource type="GDScript" id="GDScript_eqxsl"]
+script/source = "extends Area2D
+@onready var floating_ground: AnimatableBody2D = $\"../FloatingGround\"
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"Player Solo\":
+		print(\"Sound effects\")
+		floating_ground.show()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eqxsl"]
+radius = 52.23983
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0kc7"]
+size = Vector2(93, 75)
+
+[sub_resource type="Animation" id="Animation_eqxsl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2996, 781)]
+}
+
+[sub_resource type="Animation" id="Animation_b4j7a"]
+resource_name = "new_animation"
+length = 3.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2996, 781), Vector2(2996, 220)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wo48x"]
+_data = {
+&"RESET": SubResource("Animation_eqxsl"),
+&"new_animation": SubResource("Animation_b4j7a")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6cvei"]
+radius = 92.13577
+
+[node name="level2" type="Node2D" unique_id=1046035817]
+
+[node name="Player Solo" parent="." unique_id=840166661 instance=ExtResource("3_pbc48")]
+position = Vector2(2371, 519)
+
+[node name="Camera2D" type="Camera2D" parent="Player Solo" unique_id=1540819776]
+position = Vector2(0, -17)
+
+[node name="Ground" type="Node" parent="." unique_id=1885845925]
+
+[node name="Ground" parent="Ground" unique_id=673580990 instance=ExtResource("1_3bmlt")]
+position = Vector2(168, 777)
+
+[node name="Ground2" parent="Ground" unique_id=719835629 instance=ExtResource("1_3bmlt")]
+position = Vector2(2254, 777)
+
+[node name="Ground3" parent="Ground" unique_id=1227884640 instance=ExtResource("1_3bmlt")]
+position = Vector2(1906, 777)
+
+[node name="Ground4" parent="Ground" unique_id=229429491 instance=ExtResource("1_3bmlt")]
+position = Vector2(1560, 777)
+
+[node name="Ground5" parent="Ground" unique_id=561352075 instance=ExtResource("1_3bmlt")]
+position = Vector2(1212, 777)
+
+[node name="Ground6" parent="Ground" unique_id=1645609473 instance=ExtResource("1_3bmlt")]
+position = Vector2(862, 777)
+
+[node name="Ground7" parent="Ground" unique_id=2123448407 instance=ExtResource("1_3bmlt")]
+position = Vector2(516, 777)
+
+[node name="Ground8" parent="Ground" unique_id=284491696 instance=ExtResource("1_3bmlt")]
+position = Vector2(2606, 777)
+
+[node name="Ground9" parent="Ground" unique_id=1844996528 instance=ExtResource("1_3bmlt")]
+position = Vector2(3311, 346)
+
+[node name="Ground10" parent="Ground" unique_id=992348693 instance=ExtResource("1_3bmlt")]
+position = Vector2(3311, 417)
+
+[node name="Ground11" parent="Ground" unique_id=1573972866 instance=ExtResource("1_3bmlt")]
+position = Vector2(3661, 346)
+
+[node name="Ground12" parent="Ground" unique_id=721616451 instance=ExtResource("1_3bmlt")]
+position = Vector2(3661, 417)
+
+[node name="Lever" type="Area2D" parent="." unique_id=1361304889]
+z_index = -1
+script = SubResource("GDScript_eqxsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Lever" unique_id=1142409731]
+position = Vector2(2724, 701)
+texture = ExtResource("2_jm1iu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever" unique_id=292415314]
+position = Vector2(2722, 698)
+shape = SubResource("CircleShape2D_eqxsl")
+
+[node name="Catetan" type="Label" parent="." unique_id=908506220]
+texture_filter = 1
+offset_left = 154.0
+offset_top = 519.0
+offset_right = 487.0
+offset_bottom = 542.0
+text = "Watch out for the zombie, you cannot kill it"
+
+[node name="FloatingGround" type="AnimatableBody2D" parent="." unique_id=1606194009]
+visible = false
+position = Vector2(2996, 781)
+
+[node name="Sprite2D" type="Sprite2D" parent="FloatingGround" unique_id=652117537]
+texture_filter = 1
+texture = ExtResource("6_wo48x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloatingGround" unique_id=1571155079]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_y0kc7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FloatingGround" unique_id=1393659074]
+libraries/ = SubResource("AnimationLibrary_wo48x")
+autoplay = &"new_animation"
+
+[node name="zombie" parent="." unique_id=1013779828 instance=ExtResource("5_b4j7a")]
+position = Vector2(1213, 684)
+
+[node name="win" type="Sprite2D" parent="." unique_id=271921897]
+position = Vector2(3756, 225)
+texture = ExtResource("6_ne2mo")
+script = ExtResource("7_ne2mo")
+
+[node name="Area2D" type="Area2D" parent="win" unique_id=1682406839]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="win/Area2D" unique_id=1750766264]
+shape = SubResource("CircleShape2D_6cvei")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=656273664]
+stream = ExtResource("6_y0kc7")
+autoplay = true
+
+[node name="winSound" type="AudioStreamPlayer" parent="." unique_id=871375951]
+stream = ExtResource("9_6cvei")
+
+[connection signal="body_entered" from="Lever" to="Lever" method="_on_body_entered"]
+[connection signal="body_entered" from="win/Area2D" to="win" method="_on_area_2d_body_entered"]

@@ -20,6 +20,9 @@ var max_jump = 2
 # Animation
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+# Walking Sound
+@onready var walk_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 func _physics_process(delta):
 #	Gravity
 	velocity.y += delta * gravity
@@ -83,21 +86,39 @@ func _physics_process(delta):
 	move_and_slide()
 	
 #	RESET ke start kalo mati (jatuh ke bawah gituuu)
-	if position.y > 500:
+	if position.y > 1000:
 		get_tree().reload_current_scene()
 
 func handle_animation(direction):
+
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
 	elif direction < 0:
 		animated_sprite_2d.flip_h = true
 
+	if not is_on_floor():
+		animated_sprite_2d.play("jump")
+		walk_sound.stop()
+		return
+
 	if is_dashing:
 		animated_sprite_2d.play("dash")
+		walk_sound.stop()
+
 	elif is_crouching:
 		animated_sprite_2d.play("crouch")
+		walk_sound.stop()
+
 	elif is_on_floor():
 		if direction == 0:
 			animated_sprite_2d.play("idle")
+			walk_sound.stop()
 		else:
 			animated_sprite_2d.play("walk")
+
+			# mainin sound kalo blom playing
+			if not walk_sound.playing:
+				walk_sound.play()
+
+	else:
+		walk_sound.stop()

@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bql03sfm1aj12" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_skid.png" id="3_2ysl2"]
 [ext_resource type="Texture2D" uid="uid://4wq6uun8gmay" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_walk2.png" id="3_gs1qq"]
 [ext_resource type="Texture2D" uid="uid://cdks0xam43mnt" path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_slide.png" id="4_yvr8r"]
+[ext_resource type="Texture2D" uid="uid://dw2e4e8f2hrcl" path="res://assets/kenney_platformercharacters/PNG/Female/female_tilesheet.png" id="6_yvr8r"]
+[ext_resource type="AudioStream" uid="uid://chrv75foj64h8" path="res://assets/Tutorial5/walk.wav" id="8_2ysl2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15jkh"]
 size = Vector2(63, 88)
@@ -26,6 +28,10 @@ region = Rect2(0, 0, 80, 110)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ropg0"]
 atlas = ExtResource("1_i85tl")
 region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfja8"]
+atlas = ExtResource("6_yvr8r")
+region = Rect2(160, 220, 80, 110)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uik2l"]
 atlas = ExtResource("2_6p4to")
@@ -66,6 +72,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_dfja8")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_uik2l")
 }, {
 "duration": 1.0,
@@ -76,7 +90,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player Solo" type="CharacterBody2D" unique_id=840166661]
+[node name="Player Solo" type="CharacterBody2D" unique_id=840166661 groups=["player"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_6p4to")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1119241264]
@@ -86,5 +102,10 @@ shape = SubResource("RectangleShape2D_15jkh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1411124798]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_567bg")
-animation = &"idle"
+animation = &"jump"
 autoplay = "idle"
+frame_progress = 0.37587565
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=233580352]
+stream = ExtResource("8_2ysl2")
+volume_db = 20.0
